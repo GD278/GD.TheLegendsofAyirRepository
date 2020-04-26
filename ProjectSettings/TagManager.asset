@@ -42,12 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 3603910903
+  - name: Dirt
+    uniqueID: 320970507
     locked: 0
   - name: Grass
     uniqueID: 1861394531
     locked: 0
-  - name: Dirt
-    uniqueID: 320970507
+  - name: Player
+    uniqueID: 3603910903
     locked: 0
