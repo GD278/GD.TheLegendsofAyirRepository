@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private float jumpForce;
 
     private Rigidbody2D playerRigidbody;
-    private bool isJumping;
+    private bool isJumping = false;
     private bool isFacingRight = true;
     // Start is called before the first frame update
     void Start()
@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
         {
             flip();
         }
+        if (Input.GetButtonDown("Jump") && isJumping == false)
+        {
+            Jump();
+        }
+        
        
     }
 
@@ -51,5 +56,24 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x = isFacingRight ? 1 : -1;
         transform.localScale = scale;
+    }
+
+    private void Jump()
+    {
+        playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            isJumping = false;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isJumping = true;
+        }
     }
 }
