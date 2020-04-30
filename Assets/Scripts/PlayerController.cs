@@ -37,7 +37,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position,Vector3.up);
+        //TO DO: MOVE THIS INTO FIXED UPDATE
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, ladder);
         float horizontalInput = Input.GetAxis("Horizontal");
         
         float xVelocity = horizontalInput * speed;
@@ -57,6 +58,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("yVelocity", playerRigidbody.velocity.y);
        animator.SetBool("isOnGround", isOnGround);
         animator.SetBool("isClimbing", climbing);
+
+        //Ladder Climbing
         
         if(hitInfo.collider != null)
         {
@@ -68,7 +71,15 @@ public class PlayerController : MonoBehaviour
             {
                 climbing = false;
             }
+         
         }
+        if (hitInfo.collider == null)
+        {
+            climbing = false;
+
+        }
+
+
 
 
         if (climbing == true)
@@ -77,8 +88,14 @@ public class PlayerController : MonoBehaviour
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, verticalInput * climbSpeed);
             playerRigidbody.gravityScale = 0;
         }
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        {
+            climbing = false;
+            playerRigidbody.gravityScale = 1;
+        }
         else
         {
+            
             playerRigidbody.gravityScale = 1;
         }
         
