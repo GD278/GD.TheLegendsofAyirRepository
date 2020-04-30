@@ -17,11 +17,16 @@ public class PlayerController : MonoBehaviour
     [Range(0, 10)]
     private float jumpForce;
     private Animator animator;
-   
+    [SerializeField]
+    [Range(0, 10)]
+    private float climbSpeed;
 
     private Rigidbody2D playerRigidbody;
     private bool isOnGround = false;
     private bool isFacingRight = true;
+    public float distance;
+    private bool climbing = false;
+    public LayerMask ladder;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +37,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position,Vector3.up);
         float horizontalInput = Input.GetAxis("Horizontal");
+        
         float xVelocity = horizontalInput * speed;
         playerRigidbody.velocity = new Vector2(xVelocity, playerRigidbody.velocity.y);
         if((isFacingRight && horizontalInput < 0) || 
@@ -49,6 +56,31 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("xSpeed", Mathf.Abs(playerRigidbody.velocity.x));
         animator.SetFloat("yVelocity", playerRigidbody.velocity.y);
        animator.SetBool("isOnGround", isOnGround);
+        animator.SetBool("isClimbing", climbing);
+        
+        if(hitInfo.collider != null)
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                climbing = true;
+            }
+            if(Input.GetKeyUp(KeyCode.W))
+            {
+                climbing = false;
+            }
+        }
+
+
+        if (climbing == true)
+        {
+            float verticalInput = Input.GetAxis("Vertical");
+            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, verticalInput * climbSpeed);
+            playerRigidbody.gravityScale = 0;
+        }
+        else
+        {
+            playerRigidbody.gravityScale = 1;
+        }
         
     }
 
