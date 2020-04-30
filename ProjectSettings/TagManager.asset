@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - Ladder
+  - LadderTrigger
   - 
   - 
   - 
@@ -50,6 +50,9 @@ TagManager:
     locked: 0
   - name: Ladder
     uniqueID: 3133837999
+    locked: 0
+  - name: LadderTileMap
+    uniqueID: 921994363
     locked: 0
   - name: Player
     uniqueID: 3603910903
