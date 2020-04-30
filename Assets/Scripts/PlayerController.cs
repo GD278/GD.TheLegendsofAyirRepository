@@ -16,14 +16,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Range(0, 10)]
     private float jumpForce;
+    private Animator animator;
+   
 
     private Rigidbody2D playerRigidbody;
-    private bool isJumping = false;
+    private bool isOnGround = false;
     private bool isFacingRight = true;
     // Start is called before the first frame update
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,12 +40,16 @@ public class PlayerController : MonoBehaviour
         {
             flip();
         }
-        if (Input.GetButtonDown("Jump") && isJumping == false)
+        if (Input.GetButtonDown("Jump") && isOnGround == true)
         {
+            
             Jump();
         }
+        //update our animator system after updating players movement.
+        animator.SetFloat("xSpeed", Mathf.Abs(playerRigidbody.velocity.x));
+        animator.SetFloat("yVelocity", playerRigidbody.velocity.y);
+       animator.SetBool("isOnGround", isOnGround);
         
-       
     }
 
     private void FixedUpdate()
@@ -61,19 +68,20 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        animator.SetTrigger("isJumping");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Ground")
         {
-            isJumping = false;
+            isOnGround = true;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
-            isJumping = true;
+            isOnGround = false;
         }
     }
 }
