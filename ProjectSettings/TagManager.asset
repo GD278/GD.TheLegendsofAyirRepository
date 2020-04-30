@@ -48,6 +48,9 @@ TagManager:
   - name: Grass
     uniqueID: 1861394531
     locked: 0
+  - name: Ladder
+    uniqueID: 3133837999
+    locked: 0
   - name: Player
     uniqueID: 3603910903
     locked: 0
