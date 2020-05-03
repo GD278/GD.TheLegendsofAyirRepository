@@ -8,7 +8,7 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
     public Transform attackPoint;
     public LayerMask enemyLayers;
-    public int attackDamage = 40;
+    public int attackDamage;
    [SerializeField] private float attackRate;
     private float attackTime;
     [SerializeField]
@@ -39,6 +39,7 @@ public class PlayerCombat : MonoBehaviour
         //Damage Enemy
         foreach(Collider2D enemy in hitEnemies)
         {
+            attackDamage = Random.Range(1, 40);
             Debug.Log("Enemy Hit.");
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             
