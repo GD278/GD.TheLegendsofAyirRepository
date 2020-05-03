@@ -7973,7 +7973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8658066, y: 0.107898, z: 60.173027}
+  m_LocalPosition: {x: 0.25, y: 0.107896805, z: 60.173027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1426205801}
@@ -8120,7 +8120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554973762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8658066, y: 0.107898, z: 60.173027}
+  m_LocalPosition: {x: 0.25, y: 0.107896805, z: 60.173027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 35985766}
@@ -22958,7 +22958,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5625, y: 1.15625}
+  m_Size: {x: 3.125, y: 2.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -22972,7 +22972,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170817106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 41.4, y: 2.9, z: 0}
+  m_LocalPosition: {x: 27.9, y: 14.061377, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1083029311}
@@ -23018,7 +23018,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.125, y: 2.3125}
-    newSize: {x: 1.5625, y: 1.15625}
+    newSize: {x: 3.125, y: 2.3125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -23083,7 +23083,7 @@ MonoBehaviour:
     m_Bits: 512
   attackDamage: 40
   attackRate: 2
-  attackRange: 2.2
+  attackRange: 0.2
 --- !u!1 &1182428008
 GameObject:
   m_ObjectHideFlags: 0
@@ -23616,7 +23616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660676669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.534195, y: 3.6586223, z: -70.17303}
+  m_LocalPosition: {x: 27.65, y: 14.82, z: -70.17303}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 554973764}
