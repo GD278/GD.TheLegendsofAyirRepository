@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     private bool isOnGround = false;
     private bool isFacingRight = true;
+    
     public float distance;
     private bool climbing = false;
     public LayerMask ladder;
@@ -53,11 +54,13 @@ public class PlayerController : MonoBehaviour
             
             Jump();
         }
+       
         //update our animator system after updating players movement.
         animator.SetFloat("xSpeed", Mathf.Abs(playerRigidbody.velocity.x));
         animator.SetFloat("yVelocity", playerRigidbody.velocity.y);
        animator.SetBool("isOnGround", isOnGround);
         animator.SetBool("isClimbing", climbing);
+        
 
         //Ladder Climbing
         
