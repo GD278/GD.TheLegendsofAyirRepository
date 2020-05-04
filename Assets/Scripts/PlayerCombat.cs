@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     //Adapted from Brackey's Tutorial which can be found here: https://www.youtube.com/watch?v=sPiVz1k-fEs
+    [SerializeField] public int maxHealth;
+    PlayerController controller;
+    int currentHealth;
     public Animator animator;
     public Transform attackPoint;
     public LayerMask enemyLayers;
@@ -15,6 +18,12 @@ public class PlayerCombat : MonoBehaviour
    [Range(0, 10)]
     private float attackRange = 0.5f;
     // Update is called once per frame
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        controller = GetComponent<PlayerController>();
+        animator.enabled = true;
+    }
     void Update()
     {
         if (Time.time >= attackTime)
@@ -25,6 +34,28 @@ public class PlayerCombat : MonoBehaviour
                 attackTime = Time.time + 1f / attackRate;
             }
             
+        }
+        else if (Time.time >= attackTime)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                BowAim();
+                attackTime = Time.time + 1f / attackRate;
+            }
+
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+        animator.SetTrigger("Hurt");
+        currentHealth -= damage;
+        Debug.Log("Player Damaged");
+        //play hurt animation
+
+        if (currentHealth <= 0)
+        {
+
+            Die();
         }
     }
     void Attack()
@@ -45,7 +76,18 @@ public class PlayerCombat : MonoBehaviour
             
         }
     }
+    private void BowAim()
+    {
 
+
+    }
+    private void Die()
+    {
+        //Die animation
+        animator.SetTrigger("isDead");
+        controller.enabled = false;
+        
+    }
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

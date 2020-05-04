@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Range(0, 10)]
     private float climbSpeed;
+    Collider2D[] results = new Collider2D[1];
+    Collider2D playerCollider;
+    ContactFilter2D ladderFilter;
 
     private Rigidbody2D playerRigidbody;
     private bool isOnGround = false;
@@ -32,6 +35,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ladderFilter = new ContactFilter2D();
+        LayerMask mask = LayerMask.GetMask("LadderTrigger");
+        ladderFilter.SetLayerMask(mask);
+        ladderFilter.useTriggers = true;
+        playerCollider = GetComponent<Collider2D>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -61,46 +69,45 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("yVelocity", playerRigidbody.velocity.y);
        animator.SetBool("isOnGround", isOnGround);
         animator.SetBool("isClimbing", climbing);
-        
+
 
         //Ladder Climbing
-        
-        if(hitInfo.collider != null)
+        int numHit = playerCollider.OverlapCollider(ladderFilter, results);
+        if(numHit >= 1)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
                 climbing = true;
+                
             }
-            if(Input.GetKeyUp(KeyCode.W))
+            else if (Input.GetKeyUp(KeyCode.W))
             {
                 climbing = false;
             }
-         
         }
-        if (hitInfo.collider == null)
+
+        else
+        {
+            climbing = false;
+        }
+        Debug.Log($"{climbing}");
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
             climbing = false;
 
         }
-
-
-
-
         if (climbing == true)
         {
             float verticalInput = Input.GetAxis("Vertical");
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, verticalInput * climbSpeed);
-            playerRigidbody.gravityScale = 0;
+            playerRigidbody.isKinematic = true;
         }
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-        {
-            climbing = false;
-            playerRigidbody.gravityScale = 1;
-        }
+        
         else
         {
-            
-            playerRigidbody.gravityScale = 1;
+
+            playerRigidbody.isKinematic = false;
         }
         //Restart Level:
         if (Input.GetKeyDown(KeyCode.R))
