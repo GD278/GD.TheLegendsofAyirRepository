@@ -7,8 +7,10 @@ public class EnemyCombatTrigger : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject enemy;
     private Enemy enemyScript;
+    public bool inCombat;
     void Start()
     {
+        inCombat = false;
         enemyScript = enemy.GetComponent<Enemy>();
     }
 
@@ -18,18 +20,20 @@ public class EnemyCombatTrigger : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            enemyScript.inCombat = true;
+            Debug.Log("You have entered combat.");
+            inCombat = true;
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            enemyScript.inCombat = false;
+            Debug.Log("You have exited combat");
+            inCombat = false;
         }
     }
 }
