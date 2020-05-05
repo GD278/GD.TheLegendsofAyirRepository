@@ -16,21 +16,19 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     [Range(0, 10)]
     private float attackRange = 0.5f;
-    [SerializeField] GameObject combatTrigger;
     [SerializeField] private LayerMask playerLayer;
-    EnemyCombatTrigger enemyCombatTrigger;
     
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        enemyCombatTrigger = combatTrigger.GetComponent<EnemyCombatTrigger>();
+        inCombat = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyCombatTrigger.inCombat)
+        if (inCombat)
         {
             if (Time.time >= attackTime)
             {
