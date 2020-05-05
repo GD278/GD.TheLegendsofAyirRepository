@@ -17,12 +17,14 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
    [Range(0, 10)]
     private float attackRange = 0.5f;
+    
     // Update is called once per frame
     private void Start()
     {
         currentHealth = maxHealth;
         controller = GetComponent<PlayerController>();
         animator.enabled = true;
+        
     }
     void Update()
     {
@@ -84,8 +86,8 @@ public class PlayerCombat : MonoBehaviour
     private void Die()
     {
         //Die animation
-        animator.SetTrigger("isDead");
-        controller.enabled = false;
+        animator.SetBool("isDead", true);
+        controller.canUseController = false;
         
     }
     private void OnDrawGizmosSelected()
