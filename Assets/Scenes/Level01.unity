@@ -9582,7 +9582,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -1.8699996, z: 60.173027}
+  m_LocalPosition: {x: 0.2499981, y: -1.8699996, z: 60.173027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1660676670}
@@ -9771,7 +9771,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554973762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -1.8699996, z: 60.173027}
+  m_LocalPosition: {x: 0.2499981, y: -1.8699996, z: 60.173027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 35985766}
@@ -39225,7 +39225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170817106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.65, y: 2.96348, z: 0}
+  m_LocalPosition: {x: -16.850002, y: -0.93651986, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1083029311}
@@ -39294,6 +39294,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 6.42
   climbSpeed: 3.57
+  canUseController: 0
   distance: 10
   ladder:
     serializedVersion: 2
@@ -39861,7 +39862,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660676669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.4, y: 5.7, z: -70.17303}
+  m_LocalPosition: {x: -17.1, y: 1.8, z: -70.17303}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 554973764}
@@ -40425,7 +40426,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   attackDamage: 40
-  attackRate: 0.5
+  attackRate: 1
   attackRange: 0.5
   playerLayer:
     serializedVersion: 2
