@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         {
             climbing = false;
         }
-        Debug.Log($"{climbing}");
+        //Debug.Log($"{climbing}");
 
         
         if (climbing == true)
