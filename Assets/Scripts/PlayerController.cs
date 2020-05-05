@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         {
             float verticalInput = Input.GetAxis("Vertical");
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, verticalInput * climbSpeed);
-            playerRigidbody.isKinematic = true;
+            playerRigidbody.isKinematic = false;
         }
         
         else
