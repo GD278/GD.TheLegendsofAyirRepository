@@ -28,13 +28,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     private bool isOnGround = false;
     private bool isFacingRight = true;
-    
+    public bool canUseController;
     public float distance;
     private bool climbing = false;
     public LayerMask ladder;
     // Start is called before the first frame update
     void Start()
     {
+        canUseController = true;
         ladderFilter = new ContactFilter2D();
         LayerMask mask = LayerMask.GetMask("LadderTrigger");
         ladderFilter.SetLayerMask(mask);
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!climbing)
+        if (canUseController)
         {
             //TO DO: MOVE THIS INTO FIXED UPDATE
             RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, ladder);
@@ -77,28 +78,36 @@ public class PlayerController : MonoBehaviour
         int numHit = playerCollider.OverlapCollider(ladderFilter, results);
         if(numHit >= 1)
         {
+            
             if (Input.GetKeyDown(KeyCode.W))
             {
                 climbing = true;
+                canUseController = false;
                 
             }
             else if (Input.GetKeyUp(KeyCode.W))
             {
                 climbing = false;
+                canUseController = true;
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 climbing = true;
+                canUseController = false;
+
             }
             else if (Input.GetKeyUp(KeyCode.S))
             {
                 climbing = false;
+                canUseController = true;
+
             }
         }
 
         else
         {
             climbing = false;
+            canUseController = true;
         }
         //Debug.Log($"{climbing}");
 
@@ -107,12 +116,12 @@ public class PlayerController : MonoBehaviour
         {
             float verticalInput = Input.GetAxis("Vertical");
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, verticalInput * climbSpeed);
-            playerRigidbody.isKinematic = false;
+            playerRigidbody.isKinematic = true;
         }
         
         else
         {
-
+            canUseController = true;
             playerRigidbody.isKinematic = false;
         }
         //Restart Level:
