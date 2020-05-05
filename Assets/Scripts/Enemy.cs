@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public Transform attackPoint;
     public LayerMask enemyLayers;
+    public bool inCombat;
     public int attackDamage;
     [SerializeField] private float attackRate;
     private float attackTime;
@@ -21,16 +22,20 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        inCombat = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-     if(Time.time >= attackTime)
+        if (inCombat)
         {
-            Attack();
-            attackTime = Time.time + 1f / attackRate;
-        }   
+            if (Time.time >= attackTime)
+            {
+                Attack();
+                attackTime = Time.time + 1f / attackRate;
+            }
+        }
     }
     public void TakeDamage(int damage)
     {

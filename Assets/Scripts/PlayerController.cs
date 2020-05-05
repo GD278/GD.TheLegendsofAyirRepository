@@ -47,23 +47,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TO DO: MOVE THIS INTO FIXED UPDATE
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, ladder);
-        float horizontalInput = Input.GetAxis("Horizontal");
-        
-        float xVelocity = horizontalInput * speed;
-        playerRigidbody.velocity = new Vector2(xVelocity, playerRigidbody.velocity.y);
-        if((isFacingRight && horizontalInput < 0) || 
-            (!isFacingRight && horizontalInput > 0))
+        if (!climbing)
         {
-            flip();
+            //TO DO: MOVE THIS INTO FIXED UPDATE
+            RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, ladder);
+            float horizontalInput = Input.GetAxis("Horizontal");
+
+            float xVelocity = horizontalInput * speed;
+            playerRigidbody.velocity = new Vector2(xVelocity, playerRigidbody.velocity.y);
+            if ((isFacingRight && horizontalInput < 0) ||
+                (!isFacingRight && horizontalInput > 0))
+            {
+                flip();
+            }
+            if (Input.GetButtonDown("Jump") && isOnGround == true)
+            {
+
+                Jump();
+            }
         }
-        if (Input.GetButtonDown("Jump") && isOnGround == true)
-        {
-            
-            Jump();
-        }
-       
         //update our animator system after updating players movement.
         animator.SetFloat("xSpeed", Mathf.Abs(playerRigidbody.velocity.x));
         animator.SetFloat("yVelocity", playerRigidbody.velocity.y);
@@ -84,6 +86,14 @@ public class PlayerController : MonoBehaviour
             {
                 climbing = false;
             }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                climbing = true;
+            }
+            else if (Input.GetKeyUp(KeyCode.S))
+            {
+                climbing = false;
+            }
         }
 
         else
@@ -92,11 +102,7 @@ public class PlayerController : MonoBehaviour
         }
         Debug.Log($"{climbing}");
 
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-        {
-            climbing = false;
-
-        }
+        
         if (climbing == true)
         {
             float verticalInput = Input.GetAxis("Vertical");
@@ -140,6 +146,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ground")
         {
+            playerRigidbody.isKinematic = false;
             isOnGround = true;
         }
     }
@@ -147,7 +154,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            isOnGround = false;
+            if (!climbing)
+            {
+                isOnGround = false;
+            }
         }
     }
 }
