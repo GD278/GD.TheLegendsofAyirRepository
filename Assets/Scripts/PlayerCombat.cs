@@ -88,6 +88,7 @@ public class PlayerCombat : MonoBehaviour
         //Die animation
         animator.SetBool("isDead", true);
         controller.canUseController = false;
+        this.enabled = false;
         
     }
     private void OnDrawGizmosSelected()
