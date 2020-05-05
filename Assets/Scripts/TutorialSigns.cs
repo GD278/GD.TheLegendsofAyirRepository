@@ -9,10 +9,11 @@ public class TutorialSigns : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private TextMeshProUGUI tutorialText;
     [SerializeField] private string tutorialString;
+    [SerializeField] private Image signImage;
     void Start()
     {
         tutorialText.enabled = false;
-        
+        signImage.enabled = false;
     }
 
     // Update is called once per frame
@@ -27,6 +28,7 @@ public class TutorialSigns : MonoBehaviour
 
             Debug.Log("Entered trigger.");
             tutorialText.SetText(tutorialString);
+            signImage.enabled = true;
             tutorialText.enabled = true;
         }
     }
@@ -36,7 +38,7 @@ public class TutorialSigns : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             Debug.Log("Exited Trigger");
-
+            signImage.enabled = false;
             tutorialText.enabled = false;
         }
     }
