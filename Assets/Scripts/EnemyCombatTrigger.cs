@@ -6,12 +6,12 @@ public class EnemyCombatTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject enemy;
-    private Enemy enemyScript;
+    
     public bool inCombat;
     void Start()
     {
         inCombat = false;
-        enemyScript = enemy.GetComponent<Enemy>();
+        
     }
 
     // Update is called once per frame
