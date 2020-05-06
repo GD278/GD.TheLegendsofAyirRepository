@@ -82,31 +82,30 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W))
             {
                 climbing = true;
-                
+                canUseController = false;
                 
             }
             else if (Input.GetKeyUp(KeyCode.W))
             {
                 climbing = false;
-                
+                canUseController = true;
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 climbing = true;
-                
+                canUseController = false;
 
             }
             else if (Input.GetKeyUp(KeyCode.S))
             {
                 climbing = false;
-                
+                canUseController = true;
 
             }
         }
 
         else
         {
-            playerRigidbody.isKinematic = false;
             climbing = false;
             canUseController = true;
         }
@@ -115,7 +114,6 @@ public class PlayerController : MonoBehaviour
         
         if (climbing == true)
         {
-            canUseController = false;
             float verticalInput = Input.GetAxis("Vertical");
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, verticalInput * climbSpeed);
             playerRigidbody.isKinematic = true;
