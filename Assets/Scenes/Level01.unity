@@ -9991,7 +9991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24999905, y: -1.8699996, z: 60.173027}
+  m_LocalPosition: {x: -0.13000011, y: -1.8699996, z: 60.173027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1660676670}
@@ -10279,7 +10279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554973762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24999905, y: -1.8699996, z: 60.173027}
+  m_LocalPosition: {x: -0.13000011, y: -1.8699996, z: 60.173027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 35985766}
@@ -39775,7 +39775,6 @@ GameObject:
   - component: {fileID: 1170817111}
   - component: {fileID: 1170817112}
   - component: {fileID: 1170817113}
-  - component: {fileID: 1170817114}
   - component: {fileID: 1170817115}
   m_Layer: 10
   m_Name: Player
@@ -39842,7 +39841,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170817106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.650001, y: -0.93651986, z: 0}
+  m_LocalPosition: {x: -14.03, y: -0.93651986, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1083029311}
@@ -39911,7 +39910,6 @@ MonoBehaviour:
   speed: 5
   jumpForce: 6.42
   climbSpeed: 3.57
-  isOnGround: 0
   canUseController: 0
   distance: 10
   ladder:
@@ -39958,24 +39956,6 @@ MonoBehaviour:
   attackRate: 1.5
   attackRange: 0.2
   swordSwing: {fileID: 8300000, guid: 85a04ffa2973140758c695c15ab9422f, type: 3}
---- !u!114 &1170817114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170817106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90ce7732c0d2f4203b82d58ecf9cb6d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grassFootstep:
-  - {fileID: 8300000, guid: 28df0a0aaa03f4fe2873d0c2aa7f5e51, type: 3}
-  - {fileID: 8300000, guid: ad191879c3d9d496381a259d950ff426, type: 3}
-  - {fileID: 8300000, guid: 2dbfb008b8d03464ba986264b0ca2006, type: 3}
-  - {fileID: 8300000, guid: 35ea739eedce549dca94857947b4194d, type: 3}
-  - {fileID: 8300000, guid: 77370ac8148a74d1ba7f095b641583fd, type: 3}
 --- !u!82 &1170817115
 AudioSource:
   m_ObjectHideFlags: 0
