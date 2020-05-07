@@ -10,10 +10,13 @@ public class TutorialSigns : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tutorialText;
     [SerializeField] private string tutorialString;
     [SerializeField] private Image signImage;
+    private AudioSource source;
+    [SerializeField] private AudioClip clip;
     void Start()
     {
         tutorialText.enabled = false;
         signImage.enabled = false;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,7 +28,8 @@ public class TutorialSigns : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-
+            source.clip = clip;
+            source.Play();
             Debug.Log("Entered trigger.");
             tutorialText.SetText(tutorialString);
             signImage.enabled = true;
@@ -37,6 +41,8 @@ public class TutorialSigns : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            source.clip = clip;
+            source.Play();
             Debug.Log("Exited Trigger");
             signImage.enabled = false;
             tutorialText.enabled = false;

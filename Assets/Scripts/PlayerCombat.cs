@@ -17,13 +17,15 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
    [Range(0, 10)]
     private float attackRange = 0.5f;
-    
+    AudioSource source;
+    [SerializeField] private AudioClip swordSwing;
     // Update is called once per frame
     private void Start()
     {
         currentHealth = maxHealth;
         controller = GetComponent<PlayerController>();
         animator.enabled = true;
+        source = attackPoint.GetComponent<AudioSource>();
         
     }
     void Update()
@@ -62,6 +64,9 @@ public class PlayerCombat : MonoBehaviour
     }
     void Attack()
     {
+        //Play sword sound
+        source.clip = swordSwing;
+        source.Play();
         //Play an attack animation:
         animator.SetTrigger("Attack");
         Debug.Log("Attack anim set.");
