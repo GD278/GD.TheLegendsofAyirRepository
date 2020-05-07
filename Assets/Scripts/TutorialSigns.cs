@@ -29,6 +29,7 @@ public class TutorialSigns : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             source.clip = clip;
+            source.volume = 0.2f;
             source.Play();
             Debug.Log("Entered trigger.");
             tutorialText.SetText(tutorialString);
@@ -42,6 +43,7 @@ public class TutorialSigns : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             source.clip = clip;
+            source.volume = 0.2f;
             source.Play();
             Debug.Log("Exited Trigger");
             signImage.enabled = false;
