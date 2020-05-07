@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     ContactFilter2D ladderFilter;
 
     private Rigidbody2D playerRigidbody;
-    private bool isOnGround = false;
+    public bool isOnGround = false;
     private bool isFacingRight = true;
     public bool canUseController;
     public float distance;

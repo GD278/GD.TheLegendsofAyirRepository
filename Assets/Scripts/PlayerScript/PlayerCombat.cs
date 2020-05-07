@@ -30,7 +30,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-        if (Time.time >= attackTime)
+        if (Time.time >= attackTime && controller.isOnGround)
         {
             if (Input.GetMouseButtonDown(0))
             {
