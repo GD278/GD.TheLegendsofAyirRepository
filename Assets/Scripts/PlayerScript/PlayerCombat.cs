@@ -17,8 +17,11 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
    [Range(0, 10)]
     private float attackRange = 0.5f;
-    AudioSource source;
+    private AudioSource source;
     [SerializeField] private AudioClip swordSwing;
+    private AudioSource playerSource;
+    [SerializeField] private AudioClip [] playerHurt;
+    [SerializeField] private AudioClip [] playerSwing
     // Update is called once per frame
     private void Start()
     {
@@ -26,6 +29,7 @@ public class PlayerCombat : MonoBehaviour
         controller = GetComponent<PlayerController>();
         animator.enabled = true;
         source = attackPoint.GetComponent<AudioSource>();
+        playerSource = GetComponenet<AudioSource>();
         
     }
     void Update()
@@ -51,10 +55,14 @@ public class PlayerCombat : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        //Play hurt voice
+        playerSource = playerHurt[Random.Range(0, playerHurt.Length)];
+        playerSource.Play();
+        //play hurt animation
         animator.SetTrigger("Hurt");
         currentHealth -= damage;
         Debug.Log("Player Damaged");
-        //play hurt animation
+        
 
         if (currentHealth <= 0)
         {
