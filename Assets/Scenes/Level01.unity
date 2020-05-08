@@ -39915,6 +39915,10 @@ MonoBehaviour:
   ladder:
     serializedVersion: 2
     m_Bits: 256
+  jumpVoice:
+  - {fileID: 8300000, guid: 2d56cd77ac35a4253a11218ab1098a24, type: 3}
+  - {fileID: 8300000, guid: f55879d0d238c415ab00d8767e34439b, type: 3}
+  - {fileID: 8300000, guid: 08f2e73d0f12146e08e062b51c76ceb6, type: 3}
 --- !u!95 &1170817112
 Animator:
   serializedVersion: 3
