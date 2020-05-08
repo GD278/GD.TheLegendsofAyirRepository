@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private bool climbing = false;
     public LayerMask ladder;
     [SerializeField] private AudioClip[] jumpVoice;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame

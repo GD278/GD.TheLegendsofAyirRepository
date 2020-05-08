@@ -22,9 +22,11 @@ public class PlayerCombat : MonoBehaviour
     AudioSource playerSource;
     [SerializeField] private AudioClip [] playerHurt;
     [SerializeField] private AudioClip [] playerSwing;
+    
     // Update is called once per frame
     private void Start()
     {
+        
         currentHealth = maxHealth;
         controller = GetComponent<PlayerController>();
         animator.enabled = true;
@@ -34,6 +36,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
+        
         if (Time.time >= attackTime)
         {
             if (Input.GetMouseButtonDown(0))
@@ -71,6 +74,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Attack()
     {
+        
         //Play player vocal
         playerSource.clip = playerSwing[Random.Range(0, playerSwing.Length)];
         playerSource.Play();
@@ -87,11 +91,13 @@ public class PlayerCombat : MonoBehaviour
         //Damage Enemy
         foreach(Collider2D enemy in hitEnemies)
         {
+            
             attackDamage = Random.Range(1, 40);
             Debug.Log("Enemy Hit.");
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             
         }
+        
     }
     private void BowAim()
     {

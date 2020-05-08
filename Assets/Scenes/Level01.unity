@@ -39955,6 +39955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   animator: {fileID: 1170817112}
   attackPoint: {fileID: 1083029311}
   enemyLayers:
@@ -40847,7 +40848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialText: {fileID: 7588424}
-  tutorialString: 'Skeletons will drop either coins or hearts. '
+  tutorialString: Skeletons will drop either coins or hearts. (WIP)
   signImage: {fileID: 1587997693}
   clip: {fileID: 8300000, guid: bd10f4de7ccb74f7bbba796bf85a81cd, type: 3}
 --- !u!61 &1728203679
@@ -41515,6 +41516,7 @@ MonoBehaviour:
     m_Bits: 1024
   combatTrigger: {fileID: 627657972}
   death: {fileID: 8300000, guid: 3daef196fdaeb4230bf261e74fdb8bd9, type: 3}
+  player: {fileID: 1170817106}
 --- !u!82 &1837554395
 AudioSource:
   m_ObjectHideFlags: 0
