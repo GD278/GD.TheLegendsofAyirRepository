@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, ladder);
         horizontalInput += Input.GetAxis("Horizontal");
         //Restart Level:
         if (Input.GetKeyDown(KeyCode.R))
@@ -64,6 +65,39 @@ public class PlayerController : MonoBehaviour
         {
 
             Jump();
+        }
+        int numHit = playerCollider.OverlapCollider(ladderFilter, results);
+        if (numHit >= 1)
+        {
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                climbing = true;
+                canUseController = false;
+
+            }
+            else if (Input.GetKeyUp(KeyCode.W))
+            {
+                climbing = false;
+                canUseController = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                climbing = true;
+                canUseController = false;
+
+            }
+            else if (Input.GetKeyUp(KeyCode.S))
+            {
+                climbing = false;
+                canUseController = true;
+
+            }
+        }
+        else
+        {
+            climbing = false;
+            canUseController = true;
         }
 
     }
@@ -78,7 +112,7 @@ public class PlayerController : MonoBehaviour
         if (canUseController)
         {
             //TO DO: MOVE THIS INTO FIXED UPDATE
-            RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, ladder);
+           
             float horizontalInput = Input.GetAxis("Horizontal");
 
             float xVelocity = horizontalInput * speed;
@@ -98,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
 
         //Ladder Climbing
-        int numHit = playerCollider.OverlapCollider(ladderFilter, results);
+        /*int numHit = playerCollider.OverlapCollider(ladderFilter, results);
         if (numHit >= 1)
         {
 
@@ -131,7 +165,7 @@ public class PlayerController : MonoBehaviour
         {
             climbing = false;
             canUseController = true;
-        }
+        }*/
         //Debug.Log($"{climbing}");
 
 
