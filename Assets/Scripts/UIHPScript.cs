@@ -21,6 +21,19 @@ public class UIHPScript : MonoBehaviour
 		{
             playerCombat.currentHealth = 0;
 		}
+        if (playerCombat.currentHealth > 50)
+        {
+            hpText.color = Color.green;
+        }
+         if (playerCombat.currentHealth <= 50)
+        {
+            hpText.color = Color.yellow;
+        }
+         if (playerCombat.currentHealth <= 25)
+		{
+            hpText.color = Color.red;
+        }
+       
         hpText.SetText($"HP: {playerCombat.currentHealth}");
     }
 }
