@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     AudioSource source;
     [SerializeField] private AudioClip death;
     EnemyCombatTrigger enemyCombatTrigger;
+    PlayerCombat playerCombat;
+    [SerializeField] private GameObject player;
     
     // Start is called before the first frame update
     void Start()
@@ -27,13 +29,14 @@ public class Enemy : MonoBehaviour
         source = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         enemyCombatTrigger = combatTrigger.GetComponent<EnemyCombatTrigger>();
+        playerCombat = player.GetComponent<PlayerCombat>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyCombatTrigger.inCombat)
+        if (enemyCombatTrigger.inCombat && playerCombat.currentHealth > 0)
         {
             if (Time.time >= attackTime)
             {

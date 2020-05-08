@@ -7,7 +7,7 @@ public class PlayerCombat : MonoBehaviour
     //Adapted from Brackey's Tutorial which can be found here: https://www.youtube.com/watch?v=sPiVz1k-fEs
     [SerializeField] public int maxHealth;
     PlayerController controller;
-    int currentHealth;
+    public int currentHealth;
     public Animator animator;
     public Transform attackPoint;
     public LayerMask enemyLayers;
