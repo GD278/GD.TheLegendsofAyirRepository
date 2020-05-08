@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     Collider2D[] results = new Collider2D[1];
     Collider2D playerCollider;
     ContactFilter2D ladderFilter;
-
+    AudioSource source;
     private Rigidbody2D playerRigidbody;
     private bool isOnGround = false;
     private bool isFacingRight = true;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public float distance;
     private bool climbing = false;
     public LayerMask ladder;
+    [SerializeField] private AudioClip[] jumpVoice;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         playerCollider = GetComponent<Collider2D>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -148,6 +150,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        source.clip = jumpVoice[Random.Range(0, jumpVoice.Length)];
+        source.volume = .5f;
+        source.Play();
         playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         animator.SetTrigger("isJumping");
     }
