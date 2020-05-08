@@ -39956,6 +39956,18 @@ MonoBehaviour:
   attackRate: 1.5
   attackRange: 0.2
   swordSwing: {fileID: 8300000, guid: 85a04ffa2973140758c695c15ab9422f, type: 3}
+  playerHurt:
+  - {fileID: 8300000, guid: 06acf4515607b4ed6bef2c9fa832806f, type: 3}
+  - {fileID: 8300000, guid: dfb7f94e101c44b87b5942e6f6b747a2, type: 3}
+  - {fileID: 8300000, guid: f092f77eb2e864fe39de249c5738f8a4, type: 3}
+  - {fileID: 8300000, guid: 0f2aabedb14d345b99f2f85566dfd3aa, type: 3}
+  - {fileID: 8300000, guid: 272bbeab567de477f9f6191970243108, type: 3}
+  playerSwing:
+  - {fileID: 8300000, guid: b3ab2ce78aeb241dd97297e11ae130e6, type: 3}
+  - {fileID: 8300000, guid: 77c85c43caf494a0ebc571489d9ad423, type: 3}
+  - {fileID: 8300000, guid: 5514808c637ca4aaea985a72904d1c98, type: 3}
+  - {fileID: 8300000, guid: 7dc04f10c996c40709765fd42698dd9b, type: 3}
+  - {fileID: 8300000, guid: bbb0b94baf126478b8e5b64151cbe9b3, type: 3}
 --- !u!82 &1170817115
 AudioSource:
   m_ObjectHideFlags: 0
