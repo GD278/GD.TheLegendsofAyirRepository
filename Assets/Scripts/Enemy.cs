@@ -17,11 +17,14 @@ public class Enemy : MonoBehaviour
     private float attackRange = 0.5f;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] GameObject combatTrigger;
+    AudioSource source;
+    [SerializeField] private AudioClip death;
     EnemyCombatTrigger enemyCombatTrigger;
     
     // Start is called before the first frame update
     void Start()
     {
+        source = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         enemyCombatTrigger = combatTrigger.GetComponent<EnemyCombatTrigger>();
         
@@ -55,6 +58,9 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        //Play death sound
+        source.clip = death;
+        source.Play();
         //Die animation
         animator.SetBool("isDead", true);
         //Disable Enemey
