@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool canUseController;
     public float distance;
     private bool climbing = false;
+    private float horizontalInput = 0;
     public LayerMask ladder;
     [SerializeField] private AudioClip[] jumpVoice;
     
@@ -52,6 +53,28 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontalInput += Input.GetAxis("Horizontal");
+        //Restart Level:
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+        if (Input.GetButtonDown("Jump") && isOnGround == true)
+        {
+
+            Jump();
+        }
+
+    }
+    private void clearInputs()
+	{
+        horizontalInput = 0;
+	}
+
+    private void FixedUpdate()
+    {
+        //Physics code in here, not update.
         if (canUseController)
         {
             //TO DO: MOVE THIS INTO FIXED UPDATE
@@ -65,29 +88,25 @@ public class PlayerController : MonoBehaviour
             {
                 flip();
             }
-            if (Input.GetButtonDown("Jump") && isOnGround == true)
-            {
-
-                Jump();
-            }
+            
         }
         //update our animator system after updating players movement.
         animator.SetFloat("xSpeed", Mathf.Abs(playerRigidbody.velocity.x));
         animator.SetFloat("yVelocity", playerRigidbody.velocity.y);
-       animator.SetBool("isOnGround", isOnGround);
+        animator.SetBool("isOnGround", isOnGround);
         animator.SetBool("isClimbing", climbing);
 
 
         //Ladder Climbing
         int numHit = playerCollider.OverlapCollider(ladderFilter, results);
-        if(numHit >= 1)
+        if (numHit >= 1)
         {
-            
+
             if (Input.GetKeyDown(KeyCode.W))
             {
                 climbing = true;
                 canUseController = false;
-                
+
             }
             else if (Input.GetKeyUp(KeyCode.W))
             {
@@ -115,31 +134,20 @@ public class PlayerController : MonoBehaviour
         }
         //Debug.Log($"{climbing}");
 
-        
+
         if (climbing == true)
         {
             float verticalInput = Input.GetAxis("Vertical");
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, verticalInput * climbSpeed);
             playerRigidbody.isKinematic = true;
         }
-        
+
         else
         {
             canUseController = true;
             playerRigidbody.isKinematic = false;
         }
-        //Restart Level:
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
-        }
-        
-    }
-
-    private void FixedUpdate()
-    {
-        //Physics code in here, not update. 
+        clearInputs();
     }
 
     private void flip()
