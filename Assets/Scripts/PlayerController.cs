@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
+
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
     [Header("Ground Movement")]
     [Tooltip("Movement Speed in Tiles Per Second (1 tile = 1 meter in unity world).")]
     [SerializeField]
@@ -38,6 +40,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
+
         canUseController = true;
         ladderFilter = new ContactFilter2D();
         LayerMask mask = LayerMask.GetMask("LadderTrigger");
