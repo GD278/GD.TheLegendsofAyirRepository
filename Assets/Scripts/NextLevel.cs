@@ -18,11 +18,12 @@ public class NextLevel : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-	{
-        
-            Debug.Log("Player Detected");
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       if(collision.gameObject.tag == "Player")
+		{
+            Debug.Log("Player detected");
             SceneManager.LoadScene(LevelName);
-		
-	}
+		}
+    }
 }
