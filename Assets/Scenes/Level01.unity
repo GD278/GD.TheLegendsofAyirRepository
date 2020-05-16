@@ -658,9 +658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6877f09444f3467bb850961e0a171a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialText: {fileID: 0}
+  tutorialText: {fileID: 468706406}
   tutorialString: There is a boss ahead. Time your attacks to survive.
-  signImage: {fileID: 0}
+  signImage: {fileID: 1074739635}
   clip: {fileID: 8300000, guid: bd10f4de7ccb74f7bbba796bf85a81cd, type: 3}
 --- !u!61 &185486010
 BoxCollider2D:
@@ -54668,7 +54668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1727038711
 RectTransform:
   m_ObjectHideFlags: 0
