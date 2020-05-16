@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public int maxHealth;
+    [SerializeField] private int minDamage;
+    [SerializeField] private int maxDamage;
     int currentHealth;
     public Animator animator;
     public Transform attackPoint;
@@ -83,7 +85,7 @@ public class Enemy : MonoBehaviour
         //Damage Enemy
         foreach (Collider2D player in hitPlayer)
         {
-            attackDamage = Random.Range(1, 40);
+            attackDamage = Random.Range(minDamage, maxDamage);
             Debug.Log("Player Hit.");
             player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
 

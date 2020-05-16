@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     private bool isOnGround = false;
     private bool isFacingRight = true;
+    public bool canUseController2;
     public bool canUseController;
     public float distance;
     private bool climbing = false;
@@ -37,12 +38,13 @@ public class PlayerController : MonoBehaviour
     public LayerMask ladder;
     [SerializeField] private AudioClip[] jumpVoice;
     
+    
     // Start is called before the first frame update
     void Start()
     {
+
         
-
-
+        canUseController2 = true;
         canUseController = true;
         ladderFilter = new ContactFilter2D();
         LayerMask mask = LayerMask.GetMask("LadderTrigger");
@@ -59,50 +61,58 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, ladder);
-        horizontalInput += Input.GetAxis("Horizontal");
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+            Application.Quit(0);
+		}
+        
         //Restart Level:
         if (Input.GetKeyDown(KeyCode.R))
         {
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
         }
-        if (Input.GetButtonDown("Jump") && isOnGround == true)
+        if (canUseController2)
         {
-
-            Jump();
-        }
-        int numHit = playerCollider.OverlapCollider(ladderFilter, results);
-        if (numHit >= 1)
-        {
-
-            if (Input.GetKeyDown(KeyCode.W))
+            horizontalInput += Input.GetAxis("Horizontal");
+            if (Input.GetButtonDown("Jump") && isOnGround == true)
             {
-                climbing = true;
-                canUseController = false;
 
+                Jump();
             }
-            else if (Input.GetKeyUp(KeyCode.W))
+            int numHit = playerCollider.OverlapCollider(ladderFilter, results);
+            if (numHit >= 1)
+            {
+
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    climbing = true;
+                    canUseController = false;
+
+                }
+                else if (Input.GetKeyUp(KeyCode.W))
+                {
+                    climbing = false;
+                    canUseController = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    climbing = true;
+                    canUseController = false;
+
+                }
+                else if (Input.GetKeyUp(KeyCode.S))
+                {
+                    climbing = false;
+                    canUseController = true;
+
+                }
+            }
+            else
             {
                 climbing = false;
                 canUseController = true;
             }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                climbing = true;
-                canUseController = false;
-
-            }
-            else if (Input.GetKeyUp(KeyCode.S))
-            {
-                climbing = false;
-                canUseController = true;
-
-            }
-        }
-        else
-        {
-            climbing = false;
-            canUseController = true;
         }
 
     }
@@ -114,7 +124,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //Physics code in here, not update.
-        if (canUseController)
+        if (canUseController2)
         {
             //TO DO: MOVE THIS INTO FIXED UPDATE
            

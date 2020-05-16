@@ -22,11 +22,12 @@ public class PlayerCombat : MonoBehaviour
     AudioSource playerSource;
     [SerializeField] private AudioClip [] playerHurt;
     [SerializeField] private AudioClip [] playerSwing;
-    
+    public bool isDead = false;
+    RestartTBScript restart;
     // Update is called once per frame
     private void Start()
     {
-        
+        restart = GetComponent<RestartTBScript>();
         currentHealth = maxHealth;
         controller = GetComponent<PlayerController>();
         animator.enabled = true;
@@ -36,7 +37,12 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-        
+        if (currentHealth <= 0)
+        {
+
+            Die();
+        }
+
         if (Time.time >= attackTime)
         {
             if (Input.GetMouseButtonDown(0))
@@ -107,8 +113,10 @@ public class PlayerCombat : MonoBehaviour
     private void Die()
     {
         //Die animation
-        animator.SetBool("isDead", true);
-        controller.canUseController = false;
+        restart.isDead = true;
+        isDead = true;
+        animator.SetBool("isDead", isDead);
+        controller.canUseController2 = false;
         this.enabled = false;
         
     }
